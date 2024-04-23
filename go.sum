@@ -10,6 +10,8 @@ git.apache.org/thrift.git v0.0.0-20180902110319-2566ecd5d999/go.mod h1:fPE2ZNJGy
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/YCK1130/quic-go v0.0.0-20240423190804-12bb9b47f323 h1:1cOw/s8LLyPa0PdsdhzA8sJCxHQwg3CnSXZA6uDpkLQ=
 github.com/YCK1130/quic-go v0.0.0-20240423190804-12bb9b47f323/go.mod h1:tv0weZbEl1Z6zosvfFdKL7WO3KuL43mM0Q8AUoP6MVo=
+github.com/YCK1130/quic-go v0.0.0-20240423192920-6bf1ee76deac h1:xuQm8rB2wCfFgwfm3exS1I2ZCOVPflbZ1VRKt36nICc=
+github.com/YCK1130/quic-go v0.0.0-20240423192920-6bf1ee76deac/go.mod h1:tv0weZbEl1Z6zosvfFdKL7WO3KuL43mM0Q8AUoP6MVo=
 github.com/anmitsu/go-shlex v0.0.0-20161002113705-648efa622239/go.mod h1:2FmKhYUyUczH0OGQWaF5ceTx0UBShxjsH6f8oGKYe2c=
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=
 github.com/bradfitz/go-smtpd v0.0.0-20170404230938-deb6d6237625/go.mod h1:HYsPBTaaSFSlLx/70C2HPIMNZpVV8+vt/A+FMnYP11g=
