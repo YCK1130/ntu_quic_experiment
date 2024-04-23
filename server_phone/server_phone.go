@@ -19,14 +19,15 @@ import (
 	"sync"
 	"time"
 
-	"GO_QUIC_socket/devices"
+	"ntu_quic_experiment/devices"
 
-	"github.com/quic-go/quic-go"
-	"github.com/quic-go/quic-go/logging"
-	"github.com/quic-go/quic-go/qlog"
+	"github.com/YCK1130/quic-go"
+	"github.com/YCK1130/quic-go/logging"
+	"github.com/YCK1130/quic-go/qlog"
 )
 
 const SERVER = "0.0.0.0"
+
 var BITRATE int
 var PACKET_LEN int
 var SLEEPTIME float64
@@ -51,7 +52,7 @@ func main() {
 		fmt.Print("Please enter password for tcpdump.")
 		os.Exit(1)
 	}
-	
+
 	_devices_string := *_devices
 	devicesList := Get_devices(_devices_string)
 	portsList := Get_Port(devicesList)
@@ -63,7 +64,7 @@ func main() {
 	duration := *_duration
 	PACKET_LEN = *_length
 	bitrate_string := *_bitrate
-	
+
 	num, unit := bitrate_string[:len(bitrate_string)-1], bitrate_string[len(bitrate_string)-1:]
 	if unit == "k" {
 		numVal, _ := strconv.ParseFloat(num, 64)
@@ -88,7 +89,7 @@ func main() {
 		Start_server_tcpdump(*_password, portsList[i][1])
 	}
 	/* ---------- TCPDUMP ---------- */
-	
+
 	// Sync between goroutines.
 	var wg sync.WaitGroup
 	for i := 0; i < len(portsList); i++ {
@@ -129,7 +130,7 @@ func HandleQuicStream_ul(stream quic.Stream, quicPort int, duration int) {
 			return
 		}
 		// fmt.Printf("Received %d: %f\n", quicPort, ts)
-		if time.Since(currentTime) > time.Second * time.Duration(time_slot) {
+		if time.Since(currentTime) > time.Second*time.Duration(time_slot) {
 			fmt.Printf("%d [%d-%d] receive %d\n", quicPort, time_slot-1, time_slot, seq-prev_receive)
 			time_slot += 1
 			prev_receive = seq
@@ -152,7 +153,7 @@ func HandleQuicStream_dl(stream quic.Stream, quicPort int, duration int) {
 	euler := 271828
 	pi := 31415926
 	next_transmission_time := float64(start_time.UnixNano()) / 1e6
-	for time.Since(start_time) <= time.Second * time.Duration(duration) {
+	for time.Since(start_time) <= time.Second*time.Duration(duration) {
 		for float64(time.Now().UnixNano())/1e6 < next_transmission_time {
 			// t = time.Now().UnixNano()
 		}
@@ -165,11 +166,11 @@ func HandleQuicStream_dl(stream quic.Stream, quicPort int, duration int) {
 		// var message []byte
 		message := Server_create_packet(uint32(euler), uint32(pi), datetimedec, microsec, uint32(seq))
 		Server_transmit(stream, message)
-		
-		if time.Since(start_time) > time.Second * time.Duration(time_slot) {
+
+		if time.Since(start_time) > time.Second*time.Duration(time_slot) {
 			fmt.Printf("%d [%d-%d] transmit %d\n", quicPort, time_slot-1, time_slot, seq-prev_transmit)
-            time_slot += 1
-            prev_transmit = seq
+			time_slot += 1
+			prev_transmit = seq
 		}
 		seq++
 	}
