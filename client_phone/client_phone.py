@@ -78,12 +78,12 @@ procs = []
 for device_adb, device, port, serial in zip(devices_adb, devices, ports, serials):
     print(device, serial, "\n")
     portString = f"{port[0]},{port[1]}"
-    device_adb.shell("su -c 'cd /data/data/com.termux/files/home/GO_QUIC_socket && chmod +x ./socket/client_tcpdump.py'")
-    client_tcpdump_cmd = f"cd /data/data/com.termux/files/home/GO_QUIC_socket && python3 ./socket/client_tcpdump.py -d {device} -p {portString}"
+    device_adb.shell("su -c 'cd /data/data/com.termux/files/home/ntu_quic_experiment && chmod +x ./socket/client_tcpdump.py'")
+    client_tcpdump_cmd = f"cd /data/data/com.termux/files/home/ntu_quic_experiment && python3 ./socket/client_tcpdump.py -d {device} -p {portString}"
     adb_tcpdump_cmd = f"su -c '{client_tcpdump_cmd}'"
     
-    device_adb.shell("su -c 'cd /data/data/com.termux/files/home/GO_QUIC_socket && chmod +x ./client_phone/client_socket.sh'")
-    su_cmd = f'cd /data/data/com.termux/files/home/GO_QUIC_socket && ./client_phone/client_socket.sh {device} {portString} {total_time} {bitrate} {length}'
+    device_adb.shell("su -c 'cd /data/data/com.termux/files/home/ntu_quic_experiment && chmod +x ./client_phone/client_socket.sh'")
+    su_cmd = f'cd /data/data/com.termux/files/home/ntu_quic_experiment && ./client_phone/client_socket.sh {device} {portString} {total_time} {bitrate} {length}'
     adb_cmd = f"su -c '{su_cmd}'"
 
     p_tcpdump = subprocess.Popen([f'adb -s {serial} shell "{adb_tcpdump_cmd}"'], shell=True, preexec_fn=os.setpgrp)
