@@ -1,6 +1,6 @@
 module ntu_quic_experiment
 
-go 1.22.1
+go 1.21
 
 // require github.com/quic-go/quic-go v0.42.0
 require github.com/YCK1130/quic-go v0.0.0-20240423192920-6bf1ee76deac
